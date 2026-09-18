@@ -9,22 +9,34 @@ using namespace std;
 
 
 class TrieNode {
-public:
+private:
     unordered_map<char, TrieNode*> children;
     bool isEndOfWord;
 
-    TrieNode() {
-        isEndOfWord = false;
-    }
+public:
+    TrieNode() : isEndOfWord(false) {}
+    friend class Trie;
 };
+
 
 class Trie {
 private:
     TrieNode* root;
 
+    void clearHelper(TrieNode* node) {
+        for (auto& pair : node->children) {
+            clearHelper(pair.second);
+        }
+        delete node;
+    }
+
 public:
     Trie() {
         root = new TrieNode();
+    }
+
+    ~Trie() {
+        clearHelper(root);
     }
 
 
@@ -39,8 +51,7 @@ public:
         current->isEndOfWord = true;
     }
 
-
-    bool search(const string& word) {
+    bool search(const string& word) const {
         TrieNode* current = root;
         for (char ch : word) {
             if (current->children.find(ch) == current->children.end()) {
@@ -52,7 +63,7 @@ public:
     }
 
 
-    bool startsWith(const string& prefix) {
+    bool startsWith(const string& prefix) const {
         TrieNode* current = root;
         for (char ch : prefix) {
             if (current->children.find(ch) == current->children.end()) {
