@@ -1,34 +1,22 @@
 #include <iostream>
-#include <vector>
-#include <cstring>
-#include <algorithm>
-
-#define ll long long
+#include "Trie.h"
 using namespace std;
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    freopen("error.txt", "w", stderr);
-#endif
-}
 
-signed main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    fastIO();
-    ll tt; cin>>tt;
-    while(tt--){
-      ll n; cin>>n;
-     string s,t; cin>>s>>t;
-      ll odd_n=0,ev_n=0;
-      for(int i=0;i<s.size();i++){
-          if(s[i]==)
-      }
+int main() {
+    Trie myTrie;
 
-    }
+    myTrie.insert("google");
+    myTrie.insert("github");
+    myTrie.insert("graph");
+    myTrie.insert("generator");
+
+
+    cout << "Searching for 'google': " << (myTrie.search("google") ? "Found!"  : "Not Found!") << endl;
+    cout << "Searching for 'git': " << (myTrie.search("git") ? "Found!" : "Not Found!") << endl;
+
+
+    cout << "Does any word start with 'gra'?: " << (myTrie.startsWith("gra") ? "Yes"   : "No") << endl;
+    cout << "Does any word start with 'app'?: " << (myTrie.startsWith("app") ? "Yes" : "No") << endl;
 
     return 0;
 }
